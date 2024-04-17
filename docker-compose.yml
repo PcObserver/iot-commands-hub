@@ -1,0 +1,39 @@
+version: "3.4"
+
+x-iotcommandshub: &iotcommandshub
+  build: .
+  volumes:
+    - .:/app
+
+services:
+  app:
+    <<: *iotcommandshub
+    stdin_open: true
+    tty: true
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      bash -c "python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    links:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=iot_commands_hub
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5434:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./backup:/backup
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
