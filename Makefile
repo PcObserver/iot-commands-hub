@@ -9,3 +9,6 @@ python_shell:
 
 migrate:
 	docker exec iot-commands-hub-app-1 bash -c "python manage.py makemigrations && python manage.py migrate"
+
+seed_fake_data:
+	docker exec iot-commands-hub-app-1 bash -c "python manage.py seed_users_models"
