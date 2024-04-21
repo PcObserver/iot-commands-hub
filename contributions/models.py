@@ -8,8 +8,6 @@ from users.models import User
 class Contribution(PolymorphicModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="contributions")
-    
-    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = ("Contribution")

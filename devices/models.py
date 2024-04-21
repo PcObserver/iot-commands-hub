@@ -9,6 +9,7 @@ class Brand(models.Model):
     perma_name = models.CharField(max_length=100, unique=True, null=False)
     prefix = models.CharField(max_length=100, unique=True, null=False)
     
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -25,6 +26,7 @@ class Device(models.Model):
     perma_name = models.CharField(max_length=100, unique=True, null=False)
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="devices")
     
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -41,6 +43,7 @@ class Action(models.Model):
     device = models.ForeignKey(Device, on_delete=models.PROTECT, related_name="actions")
     payload = models.JSONField(encoder=json.JSONEncoder, decoder=json.JSONDecoder)
     
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
