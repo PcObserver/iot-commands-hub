@@ -1,5 +1,4 @@
 from django.db import models
-import uuid
 import json
 
 from contributions.models import Contribution
