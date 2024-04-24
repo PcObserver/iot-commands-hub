@@ -2,9 +2,10 @@ from django.db import models
 import uuid
 import json
 
+from contributions.models import Contribution
 
-class Brand(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+class Brand(Contribution):
     display_name = models.CharField(max_length=100, unique=True, null=False)
     perma_name = models.CharField(max_length=100, unique=True, null=False)
     prefix = models.CharField(max_length=100, unique=True, null=False)
@@ -20,12 +21,11 @@ class Brand(models.Model):
         return self.display_name
 
 
-class Device(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+class Device(Contribution):
     display_name = models.CharField(max_length=100, unique=True, null=False)
     perma_name = models.CharField(max_length=100, unique=True, null=False)
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="devices")
-    
+    parent_brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="devices")
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -37,12 +37,11 @@ class Device(models.Model):
         return self.display_name
 
 
-class Action(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+class Action(Contribution):
     name = models.CharField(max_length=100, unique=True, null=False)
-    device = models.ForeignKey(Device, on_delete=models.PROTECT, related_name="actions")
+    parent_device = models.ForeignKey(Device, on_delete=models.PROTECT, related_name="actions")
     payload = models.JSONField(encoder=json.JSONEncoder, decoder=json.JSONDecoder)
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
