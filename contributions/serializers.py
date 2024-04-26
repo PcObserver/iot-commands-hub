@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from .models import Contribution
+from .models import Contribution, ContributionReview
 
 from devices.models import Brand, Device, Action
 from devices.serializers import BrandSerializer, DeviceSerializer, ActionSerializer
@@ -21,3 +21,9 @@ class ContributionPolymorphicSerializer(PolymorphicSerializer):
         Device: DeviceSerializer,
         Action: ActionSerializer
     }
+
+
+class ContributionReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContributionReview
+        fields = ("id", "contribution", "reviewer", "type",)
