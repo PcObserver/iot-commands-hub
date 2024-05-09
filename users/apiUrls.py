@@ -5,10 +5,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenBlacklistView,
 )
-from .apiViews import SignUpView
+from .apiViews import SignUpViewSet, UserViewSet
 
 drf_router = DefaultRouter()
-drf_router.register(r"sign_up", SignUpView)
+drf_router.register(r"sign_up", SignUpViewSet)
+drf_router.register(r"", UserViewSet, basename="users")
 
 urlpatterns = [
     path("log_in/", TokenObtainPairView.as_view(), name="obtain_token"),
