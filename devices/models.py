@@ -6,7 +6,6 @@ from contributions.models import Contribution
 
 class Brand(Contribution):
     display_name = models.CharField(max_length=100, unique=True, null=False)
-    perma_name = models.CharField(max_length=100, unique=True, null=False)
     prefix = models.CharField(max_length=100, unique=True, null=False)
     
     created_at = models.DateTimeField(auto_now_add=True)
@@ -22,7 +21,6 @@ class Brand(Contribution):
 
 class Device(Contribution):
     display_name = models.CharField(max_length=100, unique=True, null=False)
-    perma_name = models.CharField(max_length=100, unique=True, null=False)
     parent_brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="devices")
 
     created_at = models.DateTimeField(auto_now_add=True)

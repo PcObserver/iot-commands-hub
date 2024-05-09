@@ -4,12 +4,12 @@ from .models import Brand, Device, Action
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ('id', 'display_name', 'perma_name', 'prefix',)
+    list_display = ('id', 'display_name', 'prefix',)
 
     
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'display_name', 'perma_name', 'brand',)
+    list_display = ('id', 'display_name', 'brand',)
 
     
 @admin.register(Action)
