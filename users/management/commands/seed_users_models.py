@@ -10,13 +10,15 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self, *args, **options):
-        pass
         faker = Faker("en_US")
 
         self.create_user(faker)
 
 
     def create_user(self, faker):
+        if User.objects.first():
+            return
+        
         # Creates Staff user to log in on Django Admin
         User.objects.create_superuser(
             email="admin@admin.com",
