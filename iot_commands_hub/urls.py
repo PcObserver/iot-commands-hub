@@ -22,9 +22,9 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/users/', include('users.apiUrls'), name="users"),
-    path('api/devices/', include('devices.apiUrls'), name="devices"),
-    path('api/contributions/', include('contributions.apiUrls'), name="devices"),
+    path('api/users/', include('users.apiUrls')),
+    path('api/devices/', include('devices.apiUrls')),
+    path('api/contributions/', include('contributions.apiUrls')),
 ]
 
 if settings.DEBUG:

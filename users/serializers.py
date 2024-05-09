@@ -49,3 +49,16 @@ class SignUpUserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "email",
+            "name",
+            "date_joined",
+        ]
+        read_only_fields = ["id", "date_joined", "email"]
