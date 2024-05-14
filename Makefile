@@ -12,3 +12,6 @@ migrate:
 
 seed_fake_data:
 	docker exec iot-commands-hub-app-1 bash -c "python manage.py seed_users_models && python manage.py seed_devices_models"
+
+run_docker_compose_seed:
+	python manage.py seed_users_models && python manage.py seed_devices_models

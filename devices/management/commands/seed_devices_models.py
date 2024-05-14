@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
 
     def create_brands(self, faker, user):
-        if Brand.objects.first():
+        if Brand.objects.all():
             return
 
         brands = []
@@ -41,7 +41,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Created brands successfully"))
         
     def create_devices(self, faker, user):
-        if Device.objects.first():
+        if Device.objects.all():
             return
         
         devices = []
@@ -58,7 +58,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Created devices successfully"))
         
     def create_actions(self, faker, user):
-        if Action.objects.first():
+        if Action.objects.all():
             return
         
         actions = []
