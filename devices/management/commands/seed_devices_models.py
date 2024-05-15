@@ -28,7 +28,7 @@ class Command(BaseCommand):
         brands = []
         
         for _ in range(40):
-            company = faker.company()
+            company = f"Company {random.randint(0, 100000)}"
             company_lower_case = company.lower().replace(' ', '_')
             prefix = f"{company_lower_case}_{random.randint(0, 100000)}"
             brands.append(Brand.objects.create(display_name=company, prefix=prefix))
@@ -47,7 +47,7 @@ class Command(BaseCommand):
         devices = []
         
         for _ in range(40):
-            device = faker.word()
+            device = f"Device {random.randint(0, 100000)}"
             devices.append(Device.objects.create(display_name=device, parent_brand=Brand.objects.all().order_by("?").first()))
         
         for device in devices:
@@ -64,7 +64,7 @@ class Command(BaseCommand):
         actions = []
         
         for _ in range(40):
-            action = faker.word()
+            action = f"Action {random.randint(0, 100000)}"
             
             fake_payload = {
                 "switch": "On"

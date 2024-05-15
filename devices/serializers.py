@@ -72,7 +72,16 @@ class ActionSerializer(serializers.ModelSerializer):
             "user",
             "positive_reviews_count",
             "user",
+            "method",
+            "protocol",
+            "path",
         )
 
     def get_positive_reviews_count(self, obj):
         return obj.reviews.filter(type=0).count()
+    
+    def validate(self, data):
+        if not data.get("path"):
+            raise serializers.ValidationError("Needs to define the device action's path")
+
+        return data
