@@ -1,11 +1,13 @@
 from rest_framework import serializers
 
 from .models import Brand, Device, Action
+from users.serializers import UserSerializer
 
 
 class BrandSerializer(serializers.ModelSerializer):
     devices_count = serializers.SerializerMethodField()
     positive_reviews_count = serializers.SerializerMethodField()
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Brand
@@ -18,6 +20,7 @@ class BrandSerializer(serializers.ModelSerializer):
             "user",
             "devices_count",
             "positive_reviews_count",
+            "user",
         )
 
     def get_devices_count(self, obj):
@@ -30,6 +33,7 @@ class BrandSerializer(serializers.ModelSerializer):
 class DeviceSerializer(serializers.ModelSerializer):
     actions_count = serializers.SerializerMethodField()
     positive_reviews_count = serializers.SerializerMethodField()
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Device
@@ -42,6 +46,7 @@ class DeviceSerializer(serializers.ModelSerializer):
             "user",
             "actions_count",
             "positive_reviews_count",
+            "user",
         )
 
     def get_actions_count(self, obj):
@@ -53,6 +58,7 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 class ActionSerializer(serializers.ModelSerializer):
     positive_reviews_count = serializers.SerializerMethodField()
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Action
@@ -65,6 +71,7 @@ class ActionSerializer(serializers.ModelSerializer):
             "updated_at",
             "user",
             "positive_reviews_count",
+            "user",
         )
 
     def get_positive_reviews_count(self, obj):
