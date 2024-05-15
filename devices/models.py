@@ -35,9 +35,23 @@ class Device(Contribution):
 
 
 class Action(Contribution):
-    name = models.CharField(max_length=100, unique=True, null=False)
+    method_choices = (
+        ("GET", "GET"),
+        ("POST", "POST"),
+        ("DELETE", "DELETE"),
+        ("PUT", "PUT"),
+    )
+    protocol_choices = (
+        ("MQTT", "MQTT"),
+        ("HTTP", "HTTP"),
+    )
+    
+    name = models.CharField(max_length=255, unique=True, null=False)
     parent_device = models.ForeignKey(Device, on_delete=models.PROTECT, related_name="actions")
     payload = models.JSONField(encoder=json.JSONEncoder, decoder=json.JSONDecoder)
+    method = models.CharField(choices=method_choices, null=False, blank=False, default="GET")
+    protocol = models.CharField(choices=protocol_choices, null=False, blank=False, default="HTTP")
+    path = models.CharField(max_length=255, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
