@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
 
     def create_user(self, faker):
-        if User.objects.first():
+        if User.objects.all():
             return
         
         # Creates Staff user to log in on Django Admin

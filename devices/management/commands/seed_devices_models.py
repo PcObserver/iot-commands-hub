@@ -22,13 +22,13 @@ class Command(BaseCommand):
 
 
     def create_brands(self, faker, user):
-        if Brand.objects.first():
+        if Brand.objects.all():
             return
 
         brands = []
         
         for _ in range(40):
-            company = faker.company()
+            company = f"Company {random.randint(0, 100000)}"
             company_lower_case = company.lower().replace(' ', '_')
             prefix = f"{company_lower_case}_{random.randint(0, 100000)}"
             brands.append(Brand.objects.create(display_name=company, prefix=prefix))
@@ -41,13 +41,13 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Created brands successfully"))
         
     def create_devices(self, faker, user):
-        if Device.objects.first():
+        if Device.objects.all():
             return
         
         devices = []
         
         for _ in range(40):
-            device = faker.word()
+            device = f"Device {random.randint(0, 100000)}"
             devices.append(Device.objects.create(display_name=device, parent_brand=Brand.objects.all().order_by("?").first()))
         
         for device in devices:
@@ -58,13 +58,13 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Created devices successfully"))
         
     def create_actions(self, faker, user):
-        if Action.objects.first():
+        if Action.objects.all():
             return
         
         actions = []
         
         for _ in range(40):
-            action = faker.word()
+            action = f"Action {random.randint(0, 100000)}"
             
             fake_payload = {
                 "switch": "On"
