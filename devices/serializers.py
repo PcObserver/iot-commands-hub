@@ -66,6 +66,7 @@ class DeviceSerializer(serializers.ModelSerializer):
             "positive_reviews_count",
             "user",
             "description",
+            "prefix",
         )
 
     def get_actions_count(self, obj):
