@@ -94,6 +94,7 @@ class DeviceSerializer(serializers.ModelSerializer):
 
 class ActionSerializer(serializers.ModelSerializer):
     positive_reviews_count = serializers.SerializerMethodField()
+    payload = serializers.JSONField()
 
     class Meta:
         model = Action
