@@ -9,18 +9,18 @@ class BrandViewSet(ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
     filterset_class = BrandFilter
-    http_method_names = ["get"]
+    http_method_names = ["get", "patch"]
 
 
 class DeviceViewSet(ModelViewSet):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
     filterset_class = DeviceFilter
-    http_method_names = ["get"]
+    http_method_names = ["get", "patch"]
 
 
 class ActionViewSet(ModelViewSet):
     queryset = Action.objects.all()
     serializer_class = ActionSerializer
     filterset_class = ActionFilter
-    http_method_names = ["get"]
+    http_method_names = ["get", "patch"]
