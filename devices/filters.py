@@ -11,6 +11,7 @@ class BrandFilter(FilterSet):
     similar_display_name = filters.CharFilter(
         method="filter_similar_name", label="Similar Name"
     )
+    order_display_name_a_to_z = filters.BooleanFilter(method="order_by_display_name")
 
     def filter_display_name(self, queryset, name, value):
         return queryset.filter(Q(display_name__icontains=value))
@@ -26,6 +27,12 @@ class BrandFilter(FilterSet):
 
         return queryset.filter(Q(display_name__in=similar_names))
 
+    def order_by_display_name(self, queryset, name, value):
+        if value:
+            return queryset.order_by("display_name")
+        else:
+            return queryset.order_by("-display_name")
+
     class Meta:
         model = Brand
         fields = [
@@ -33,6 +40,7 @@ class BrandFilter(FilterSet):
             "display_name",
             "prefix",
             "similar_display_name",
+            "order_display_name_a_to_z",
         ]
 
 
@@ -42,6 +50,7 @@ class DeviceFilter(FilterSet):
         method="filter_similar_name", label="Similar Name"
     )
     parent_brand = filters.UUIDFilter(field_name="parent_brand__id")
+    order_display_name_a_to_z = filters.BooleanFilter(method="order_by_display_name")
 
     def filter_display_name(self, queryset, name, value):
         return queryset.filter(Q(display_name__icontains=value))
@@ -57,9 +66,21 @@ class DeviceFilter(FilterSet):
 
         return queryset.filter(Q(display_name__in=similar_names))
 
+    def order_by_display_name(self, queryset, name, value):
+        if value:
+            return queryset.order_by("display_name")
+        else:
+            return queryset.order_by("-display_name")
+
     class Meta:
         model = Device
-        fields = ["id", "display_name", "parent_brand", "similar_display_name"]
+        fields = [
+            "id",
+            "display_name",
+            "parent_brand",
+            "similar_display_name",
+            "order_display_name_a_to_z",
+        ]
 
 
 class ActionFilter(FilterSet):
@@ -68,6 +89,7 @@ class ActionFilter(FilterSet):
         method="filter_similar_name", label="Similar Name"
     )
     parent_device = filters.UUIDFilter(field_name="parent_device__id")
+    order_name_a_to_z = filters.BooleanFilter(method="order_by_name")
 
     def filter_name(self, queryset, name, value):
         return queryset.filter(Q(name__icontains=value))
@@ -83,6 +105,12 @@ class ActionFilter(FilterSet):
 
         return queryset.filter(Q(display_name__in=similar_names))
 
+    def order_by_name(self, queryset, name, value):
+        if value:
+            return queryset.order_by("name")
+        else:
+            return queryset.order_by("-name")
+
     class Meta:
         model = Action
-        fields = ["id", "name", "parent_device", "similar_name"]
+        fields = ["id", "name", "parent_device", "similar_name", "order_name_a_to_z"]
