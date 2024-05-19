@@ -90,6 +90,7 @@ class ActionFilter(FilterSet):
     )
     parent_device = filters.UUIDFilter(field_name="parent_device__id")
     order_name_a_to_z = filters.BooleanFilter(method="order_by_name")
+    parent_device_brand = filters.UUIDFilter(field_name="parent_device__parent_brand__id")
 
     def filter_name(self, queryset, name, value):
         return queryset.filter(Q(name__icontains=value))
