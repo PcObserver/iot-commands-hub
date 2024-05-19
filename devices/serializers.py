@@ -20,6 +20,7 @@ class BrandSerializer(serializers.ModelSerializer):
             "devices_count",
             "positive_reviews_count",
             "user",
+            "description",
         )
 
     def get_devices_count(self, obj):
@@ -64,6 +65,7 @@ class DeviceSerializer(serializers.ModelSerializer):
             "actions_count",
             "positive_reviews_count",
             "user",
+            "description",
         )
 
     def get_actions_count(self, obj):
@@ -110,6 +112,7 @@ class ActionSerializer(serializers.ModelSerializer):
             "method",
             "protocol",
             "path",
+            "description",
         )
 
     def get_positive_reviews_count(self, obj):
