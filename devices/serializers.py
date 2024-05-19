@@ -38,6 +38,15 @@ class BrandSerializer(serializers.ModelSerializer):
         )
 
         return representation
+    
+    def validate_display_name(self, value):
+        user = self.context['request'].user
+
+        existing_user_brands = Brand.objects.filter(display_name=value, user=user)
+
+        if existing_user_brands:
+            raise serializers.ValidationError("Current user already created a Brand with provided display_name")
+        return value
 
 
 class DeviceSerializer(serializers.ModelSerializer):
@@ -74,6 +83,14 @@ class DeviceSerializer(serializers.ModelSerializer):
 
         return representation
 
+    def validate_display_name(self, value):
+        user = self.context['request'].user
+
+        existing_user_brands = Brand.objects.filter(display_name=value, user=user)
+
+        if existing_user_brands:
+            raise serializers.ValidationError("Current user already created a Device with provided display_name")
+        return value
 
 class ActionSerializer(serializers.ModelSerializer):
     positive_reviews_count = serializers.SerializerMethodField()
@@ -113,3 +130,12 @@ class ActionSerializer(serializers.ModelSerializer):
         )
 
         return representation
+    
+    def validate_display_name(self, value):
+        user = self.context['request'].user
+
+        existing_user_brands = Brand.objects.filter(display_name=value, user=user)
+
+        if existing_user_brands:
+            raise serializers.ValidationError("Current user already created an Action with provided name")
+        return value

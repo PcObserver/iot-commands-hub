@@ -5,8 +5,8 @@ from contributions.models import Contribution
 
 
 class Brand(Contribution):
-    display_name = models.CharField(max_length=100, unique=True, null=False)
-    prefix = models.CharField(max_length=100, unique=True, null=False)
+    display_name = models.CharField(max_length=100, null=False)
+    prefix = models.CharField(max_length=100, null=False)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -20,7 +20,7 @@ class Brand(Contribution):
 
 
 class Device(Contribution):
-    display_name = models.CharField(max_length=100, unique=True, null=False)
+    display_name = models.CharField(max_length=100, null=False)
     parent_brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="devices")
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -46,7 +46,7 @@ class Action(Contribution):
         ("HTTP", "HTTP"),
     )
     
-    name = models.CharField(max_length=255, unique=True, null=False)
+    name = models.CharField(max_length=255, null=False)
     parent_device = models.ForeignKey(Device, on_delete=models.PROTECT, related_name="actions")
     payload = models.JSONField(encoder=json.JSONEncoder, decoder=json.JSONDecoder)
     method = models.CharField(choices=method_choices, null=False, blank=False, default="GET")
