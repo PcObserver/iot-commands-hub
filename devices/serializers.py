@@ -7,7 +7,6 @@ from users.serializers import UserSerializer
 class BrandSerializer(serializers.ModelSerializer):
     devices_count = serializers.SerializerMethodField()
     positive_reviews_count = serializers.SerializerMethodField()
-    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Brand
@@ -28,12 +27,22 @@ class BrandSerializer(serializers.ModelSerializer):
 
     def get_positive_reviews_count(self, obj):
         return obj.reviews.filter(type=0).count()
+    
+    def to_representation(self, instance):
+        representation = super(BrandSerializer, self).to_representation(instance)
+
+        representation["user"] = (
+            UserSerializer(instance.user).data
+            if representation["user"] is not None
+            else None
+        )
+
+        return representation
 
 
 class DeviceSerializer(serializers.ModelSerializer):
     actions_count = serializers.SerializerMethodField()
     positive_reviews_count = serializers.SerializerMethodField()
-    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Device
@@ -53,11 +62,21 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     def get_positive_reviews_count(self, obj):
         return obj.reviews.filter(type=0).count()
+    
+    def to_representation(self, instance):
+        representation = super(DeviceSerializer, self).to_representation(instance)
+
+        representation["user"] = (
+            UserSerializer(instance.user).data
+            if representation["user"] is not None
+            else None
+        )
+
+        return representation
 
 
 class ActionSerializer(serializers.ModelSerializer):
     positive_reviews_count = serializers.SerializerMethodField()
-    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Action
@@ -83,3 +102,14 @@ class ActionSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Needs to define the device action's path")
 
         return data
+    
+    def to_representation(self, instance):
+        representation = super(ActionSerializer, self).to_representation(instance)
+
+        representation["user"] = (
+            UserSerializer(instance.user).data
+            if representation["user"] is not None
+            else None
+        )
+
+        return representation
