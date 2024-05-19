@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import password_validation
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.db import transaction
 
 from .models import User
@@ -62,3 +63,12 @@ class UserSerializer(serializers.ModelSerializer):
             "date_joined",
         ]
         read_only_fields = ["id", "date_joined", "email"]
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super(CustomTokenObtainPairSerializer, self).validate(attrs)
+
+        data["user"] = UserSerializer(self.user).data
+
+        return data
