@@ -3,8 +3,6 @@ from rest_framework import serializers
 from .models import Brand, Device, Action
 from users.serializers import UserSerializer
 
-from thefuzz import process
-
 
 class BrandSerializer(serializers.ModelSerializer):
     devices_count = serializers.SerializerMethodField()
@@ -30,19 +28,6 @@ class BrandSerializer(serializers.ModelSerializer):
 
     def get_positive_reviews_count(self, obj):
         return obj.reviews.filter(type=0).count()
-
-    def validate_display_names(self, value):
-        brand_names = Brand.objects.values_list("display_name", flat=True)
-        minimal_match_score = 90
-
-        similar_name = process.extractOne(value, brand_names, scorer_cutoff=minimal_match_score)
-
-        if similar_name:
-            raise serializers.ValidationError(
-                "There's a Brand with a similar name with the one provided"
-            )
-
-        return value
 
 
 class DeviceSerializer(serializers.ModelSerializer):
