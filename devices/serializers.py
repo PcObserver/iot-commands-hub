@@ -19,7 +19,6 @@ class BrandSerializer(serializers.ModelSerializer):
             "user",
             "devices_count",
             "positive_reviews_count",
-            "user",
             "description",
         )
 
@@ -49,6 +48,11 @@ class BrandSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Current user already created a Brand with provided display_name")
         return value
 
+    def create(self, validated_data):
+        validated_data["user"] = self.context['request'].user
+
+        return super().create(validated_data)
+
 
 class DeviceSerializer(serializers.ModelSerializer):
     actions_count = serializers.SerializerMethodField()
@@ -66,6 +70,7 @@ class DeviceSerializer(serializers.ModelSerializer):
             "positive_reviews_count",
             "user",
             "description",
+            "prefix",
         )
 
     def get_actions_count(self, obj):
@@ -93,6 +98,11 @@ class DeviceSerializer(serializers.ModelSerializer):
         if existing_user_devices:
             raise serializers.ValidationError("Current user already created a Device with provided display_name")
         return value
+    
+    def create(self, validated_data):
+        validated_data["user"] = self.context['request'].user
+
+        return super().create(validated_data)
 
 class ActionSerializer(serializers.ModelSerializer):
     positive_reviews_count = serializers.SerializerMethodField()
@@ -143,3 +153,8 @@ class ActionSerializer(serializers.ModelSerializer):
         if existing_user_actions:
             raise serializers.ValidationError("Current user already created an Action with provided name")
         return value
+
+    def create(self, validated_data):
+        validated_data["user"] = self.context['request'].user
+
+        return super().create(validated_data)
