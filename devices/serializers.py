@@ -93,7 +93,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     def validate_display_name(self, value):
         user = self.context['request'].user
 
-        existing_user_devices = Brand.objects.filter(display_name=value, user=user)
+        existing_user_devices = Device.objects.filter(display_name=value, user=user)
 
         if existing_user_devices:
             raise serializers.ValidationError("Current user already created a Device with provided display_name")
@@ -148,7 +148,7 @@ class ActionSerializer(serializers.ModelSerializer):
     def validate_display_name(self, value):
         user = self.context['request'].user
 
-        existing_user_actions = Brand.objects.filter(display_name=value, user=user)
+        existing_user_actions = Action.objects.filter(name=value, user=user)
 
         if existing_user_actions:
             raise serializers.ValidationError("Current user already created an Action with provided name")
