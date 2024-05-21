@@ -23,6 +23,7 @@ class Brand(Contribution):
 class Device(Contribution):
     display_name = models.CharField(max_length=100, null=False)
     description = models.TextField(blank=True, null=True)
+    prefix = models.CharField(max_length=100, null=True)
     parent_brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="devices")
 
     created_at = models.DateTimeField(auto_now_add=True)
