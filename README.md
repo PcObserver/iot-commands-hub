@@ -3,7 +3,7 @@
 
 Com o rápido avanço da tecnologia, a quantidade de dispositivos IoT vem crescendo exponencialmente. Diversos sistemas oferecem soluções para operar esses dispositivos, mas a maioria deles dá suporte apenas aos da própria marca, criando dificuldades em construir ecossistemas IoT com controle unificado. O projeto “Elegos” consiste de um controle universal de dispositivos IoT que visa unificar o gerenciamento desses dispositivos em uma única plataforma.
 
-Utilizando um hub baseado em Raspberry Pi 3 modelo B, o sistema detecta automaticamente dispositivos na rede local e permite o envio de comandos, mesmo sem conexão com a internet. Além disso, um repositório online de comandos permite a adição e o compartilhamento de novos dispositivos de forma colaborativa. A arquitetura do sistema foi projetada para facilitar a inclusão de novos dispositivos e comandos. Com a conclusão da versão inicial, o projeto busca continuamente expandir suas capacidades, proporcionando um controle mais abrangente e personalizado para os usuários.
+Utilizando um hub baseado em Raspberry Pi 3 modelo B, o sistema detecta automaticamente dispositivos na rede local e permite o envio de comandos, mesmo sem conexão com a internet. Além disso, um repositório online de comandos permite a adição e o compartilhamento de novos dispositivos de forma colaborativa, permitindo a inclusão de novos dispositivos e comandos, bem como avaliação das contribuições criadas pelos usuários pela própria comunidade utilizando um sistema de avaliação por votos positivos.
 
 ## Repositórios Associados
 
