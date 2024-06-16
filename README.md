@@ -48,4 +48,5 @@ DATABASE_PORT='5432'
 Com estas configurações feitas, basta rodar o comando `docker-compose up` para inicializar o sistema. 
 
 O projeto também oferece uma documentação dos endpoints da API, disponibilizada pelo Swagger, que pode ser acessada no link abaixo após iniciar o sistema:
+
 [http://localhost:8000/api/schema/swagger-ui/](http://localhost:8000/api/schema/swagger-ui/)
