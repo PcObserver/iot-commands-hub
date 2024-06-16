@@ -1,4 +1,4 @@
-# Elegos
+# Projeto Elegos
 ![Imagem do Projeto](https://github.com/PcObserver/assets/blob/main/elegos_image.png)
 
 Com o rápido avanço da tecnologia, a quantidade de dispositivos IoT vem crescendo exponencialmente. Diversos sistemas oferecem soluções para operar esses dispositivos, mas a maioria deles dá suporte apenas aos da própria marca, criando dificuldades em construir ecossistemas IoT com controle unificado. O projeto “Elegos” consiste de um controle universal de dispositivos IoT que visa unificar o gerenciamento desses dispositivos em uma única plataforma.
