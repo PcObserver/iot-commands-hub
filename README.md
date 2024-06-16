@@ -12,12 +12,12 @@ Utilizando um hub baseado em Raspberry Pi 3 modelo B, o sistema detecta automati
 
 ## Objetivo
 
-Este repositório consiste na implementação do Back-end da comunidade de dispisitivos IoT, sistema web onde usuários podem cadastras marcas, comandos e dispositivos IoT. A API desenvolvida neste repositório é consumida tanto pelo Front-end da comunidade de dispositivos IoT quanto o sistema servido no Raspberry Pi.
+Este repositório consiste na implementação do Back-end da comunidade de dispisitivos IoT, sistema web onde usuários podem cadastras marcas, comandos e dispositivos. A API desenvolvida neste repositório é consumida tanto pelo Front-end da comunidade de dispositivos IoT, quanto pelo sistema servido no Raspberry Pi.
 
 ## Tecnologias Utilizadas
 
-- Python
-- Django
+- Python 3.11.5
+- Django 5.0.4
 - PostgreSQL 15
 - Swagger
 
@@ -29,7 +29,7 @@ Este projeto foi desenvolvimento para rodar com Docker. É utilizado Docker e Do
 
 [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
-### Configuring environment variables
+### Configurando variáveis de ambiente
 
 Para configurar as variáveis de ambiente necessárias para rodar o projeto localmente, crie um arquivo `.env` dentro do diretório `iot_commands_hub`, e ponha o conteúdo abaixo dentro do arquivo:
 
@@ -47,7 +47,7 @@ DATABASE_PORT='5432'
 
 Com estas configurações feitas, basta rodar o comando `docker-compose up` para inicializar o sistema. 
 
-A documentação disponibilizada pelo Swagger pode ser acessada em:
+O projeto também oferece uma documentação dos endpoints da API, disponibilizada pelo Swagger, que pode ser acessada no link abaixo após iniciar o sistema:
 [http://localhost:8000/api/schema/swagger-ui/](http://localhost:8000/api/schema/swagger-ui/)
 
 
