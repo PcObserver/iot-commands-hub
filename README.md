@@ -6,10 +6,9 @@ Com o rápido avanço da tecnologia, a quantidade de dispositivos IoT vem cresce
 Utilizando um hub baseado em Raspberry Pi 3 modelo B, o sistema detecta automaticamente dispositivos na rede local e permite o envio de comandos, mesmo sem conexão com a internet. Além disso, um repositório online de comandos permite a adição e o compartilhamento de novos dispositivos de forma colaborativa, permitindo a inclusão de novos dispositivos e comandos, bem como avaliação das contribuições criadas pelos usuários pela própria comunidade utilizando um sistema de avaliação por votos positivos.
 
 ## Repositórios Associados
-
-- [Back-end da Comunidade de Dispositivos IoT]([link-do-repositorio-1](https://github.com/PcObserver/iot-commands-hub))
-- [Front-end da Comunidade de Dispositivos IoT]([link-do-repositorio-2](https://github.com/PcObserver/TCC-iot-hub))
-- [Sitema do Raspberry Pi]([link-do-repositorio-3](https://github.com/PcObserver/TCC-RaspClient))
+- [Back-end da Comunidade de Dispositivos IoT](https://github.com/PcObserver/iot-commands-hub)
+- [Front-end da Comunidade de Dispositivos IoT](https://github.com/PcObserver/TCC-iot-hub)
+- [Sistema do Raspberry Pi](https://github.com/PcObserver/TCC-RaspClient)
 
 ## Objetivo
 
